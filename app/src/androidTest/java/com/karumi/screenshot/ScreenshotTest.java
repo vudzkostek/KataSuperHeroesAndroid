@@ -18,18 +18,17 @@ package com.karumi.screenshot;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.facebook.testing.screenshot.Screenshot;
 import com.facebook.testing.screenshot.ViewHelpers;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
-@LargeTest
 public class ScreenshotTest {
 
     protected void compareScreenshot(Activity activity) {

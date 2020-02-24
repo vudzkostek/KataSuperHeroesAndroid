@@ -26,7 +26,7 @@ import com.karumi.screenshot.ui.view.SuperHeroViewHolder;
 
 import org.junit.Test;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.mockito.Mockito.mock;
 
 public class SuperHeroViewHolderTest extends ScreenshotTest {

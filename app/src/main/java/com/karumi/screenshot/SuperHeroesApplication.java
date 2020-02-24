@@ -17,7 +17,8 @@
 package com.karumi.screenshot;
 
 import android.app.Application;
-import android.support.annotation.VisibleForTesting;
+
+import androidx.annotation.VisibleForTesting;
 
 import com.karumi.screenshot.di.DaggerMainComponent;
 import com.karumi.screenshot.di.MainComponent;

@@ -16,27 +16,28 @@
 package com.karumi.screenshot.ui.view;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.karumi.screenshot.R;
 import com.karumi.screenshot.model.SuperHero;
 import com.karumi.screenshot.ui.presenter.SuperHeroesPresenter;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SuperHeroViewHolder extends RecyclerView.ViewHolder {
 
     private final SuperHeroesPresenter presenter;
-    @Bind(R.id.iv_super_hero_photo)
+    @BindView(R.id.iv_super_hero_photo)
     ImageView photoImageView;
-    @Bind(R.id.tv_super_hero_name)
+    @BindView(R.id.tv_super_hero_name)
     TextView nameTextView;
-    @Bind(R.id.iv_avengers_badge)
+    @BindView(R.id.iv_avengers_badge)
     View avengersBadgeView;
 
     public SuperHeroViewHolder(View itemView, SuperHeroesPresenter presenter) {

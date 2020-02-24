@@ -17,9 +17,10 @@
 package com.karumi.screenshot.ui.view;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.karumi.screenshot.R;
 import com.karumi.screenshot.SuperHeroesApplication;
@@ -30,15 +31,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements SuperHeroesPresenter.View {
 
     @Inject
     SuperHeroesPresenter presenter;
-    @Bind(R.id.tv_empty_case)
+    @BindView(R.id.tv_empty_case)
     View emptyCaseView;
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     private SuperHeroesAdapter adapter;
 

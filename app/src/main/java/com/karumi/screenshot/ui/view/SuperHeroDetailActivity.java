@@ -31,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class SuperHeroDetailActivity extends BaseActivity implements SuperHeroDetailPresenter.View {
 
@@ -40,13 +40,13 @@ public class SuperHeroDetailActivity extends BaseActivity implements SuperHeroDe
     @Inject
     SuperHeroDetailPresenter presenter;
 
-    @Bind(R.id.iv_super_hero_photo)
+    @BindView(R.id.iv_super_hero_photo)
     ImageView superHeroPhotoImageView;
-    @Bind(R.id.tv_super_hero_name)
+    @BindView(R.id.tv_super_hero_name)
     TextView superHeroNameTextView;
-    @Bind(R.id.tv_super_hero_description)
+    @BindView(R.id.tv_super_hero_description)
     TextView superHeroDescriptionTextView;
-    @Bind(R.id.iv_avengers_badge)
+    @BindView(R.id.iv_avengers_badge)
     View avengersBadgeView;
 
     public static void open(Context context, String superHeroName) {

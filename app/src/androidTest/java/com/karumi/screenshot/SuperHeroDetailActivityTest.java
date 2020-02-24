@@ -18,8 +18,9 @@ package com.karumi.screenshot;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.rule.ActivityTestRule;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
 
 import com.karumi.screenshot.di.MainComponent;
 import com.karumi.screenshot.di.MainModule;

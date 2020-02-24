@@ -17,9 +17,10 @@
 package com.karumi.screenshot;
 
 import android.app.Activity;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
+
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.karumi.screenshot.di.MainComponent;
 import com.karumi.screenshot.di.MainModule;
@@ -38,12 +39,12 @@ import java.util.List;
 
 import it.cosenonjaviste.daggermock.DaggerMockRule;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.intent.Intents.intended;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.mockito.Mockito.when;
 
 public class MainActivityTest extends ScreenshotTest {
@@ -158,7 +159,7 @@ public class MainActivityTest extends ScreenshotTest {
     }
 
     private void givenThereAreNoSuperHeroes() {
-        when(repository.getAll()).thenReturn(Collections.<SuperHero>emptyList());
+        when(repository.getAll()).thenReturn(Collections.emptyList());
     }
 
     private MainActivity startActivity() {
