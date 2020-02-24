@@ -23,30 +23,32 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+
 import com.facebook.testing.screenshot.Screenshot;
 import com.facebook.testing.screenshot.ViewHelpers;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
-@LargeTest public class ScreenshotTest {
+@LargeTest
+public class ScreenshotTest {
 
-  protected void compareScreenshot(Activity activity) {
-    Screenshot.snapActivity(activity).record();
-  }
+    protected void compareScreenshot(Activity activity) {
+        Screenshot.snapActivity(activity).record();
+    }
 
-  protected void compareScreenshot(RecyclerView.ViewHolder holder, int height) {
-    compareScreenshot(holder.itemView, height);
-  }
+    protected void compareScreenshot(RecyclerView.ViewHolder holder, int height) {
+        compareScreenshot(holder.itemView, height);
+    }
 
-  protected void compareScreenshot(View view, int height) {
-    Context context = getInstrumentation().getTargetContext();
-    WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-    DisplayMetrics metrics = new DisplayMetrics();
-    windowManager.getDefaultDisplay().getMetrics(metrics);
-    ViewHelpers.setupView(view)
-        .setExactHeightPx(context.getResources().getDimensionPixelSize(height))
-        .setExactWidthPx(metrics.widthPixels)
-        .layout();
-    Screenshot.snap(view).record();
-  }
+    protected void compareScreenshot(View view, int height) {
+        Context context = getInstrumentation().getTargetContext();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        ViewHelpers.setupView(view)
+                .setExactHeightPx(context.getResources().getDimensionPixelSize(height))
+                .setExactWidthPx(metrics.widthPixels)
+                .layout();
+        Screenshot.snap(view).record();
+    }
 }

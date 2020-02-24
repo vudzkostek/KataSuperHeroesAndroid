@@ -20,69 +20,80 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.karumi.screenshot.R;
 import com.karumi.screenshot.SuperHeroesApplication;
 import com.karumi.screenshot.model.SuperHero;
 import com.karumi.screenshot.ui.presenter.SuperHeroesPresenter;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity implements SuperHeroesPresenter.View {
 
-  @Inject SuperHeroesPresenter presenter;
+    @Inject
+    SuperHeroesPresenter presenter;
+    @Bind(R.id.tv_empty_case)
+    View emptyCaseView;
+    @Bind(R.id.recycler_view)
+    RecyclerView recyclerView;
+    private SuperHeroesAdapter adapter;
 
-  private SuperHeroesAdapter adapter;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        presenter.initialize();
+    }
 
-  @Bind(R.id.tv_empty_case) View emptyCaseView;
-  @Bind(R.id.recycler_view) RecyclerView recyclerView;
+    @Override
+    public int getLayoutId() {
+        return R.layout.main_activity;
+    }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    initializeDagger();
-    initializePresenter();
-    initializeAdapter();
-    initializeRecyclerView();
-    presenter.initialize();
-  }
+    @Override
+    public void showSuperHeroes(List<SuperHero> superHeroes) {
+        adapter.addAll(superHeroes);
+        adapter.notifyDataSetChanged();
+    }
 
-  @Override public int getLayoutId() {
-    return R.layout.main_activity;
-  }
+    @Override
+    public void openSuperHeroScreen(SuperHero superHero) {
+        SuperHeroDetailActivity.open(this, superHero.getName());
+    }
 
-  @Override public void showSuperHeroes(List<SuperHero> superHeroes) {
-    adapter.addAll(superHeroes);
-    adapter.notifyDataSetChanged();
-  }
+    @Override
+    public void showEmptyCase() {
+        emptyCaseView.setVisibility(View.VISIBLE);
+    }
 
-  @Override public void openSuperHeroScreen(SuperHero superHero) {
-    SuperHeroDetailActivity.open(this, superHero.getName());
-  }
+    @Override
+    public void hideEmptyCase() {
+        emptyCaseView.setVisibility(View.GONE);
+    }
 
-  @Override public void showEmptyCase() {
-    emptyCaseView.setVisibility(View.VISIBLE);
-  }
+    private void initializeDagger() {
+        SuperHeroesApplication app = (SuperHeroesApplication) getApplication();
+        app.getMainComponent().inject(this);
+    }
 
-  @Override public void hideEmptyCase() {
-    emptyCaseView.setVisibility(View.GONE);
-  }
+    private void initializePresenter() {
+        presenter.setView(this);
+    }
 
-  private void initializeDagger() {
-    SuperHeroesApplication app = (SuperHeroesApplication) getApplication();
-    app.getMainComponent().inject(this);
-  }
+    private void initializeAdapter() {
+        adapter = new SuperHeroesAdapter(presenter);
+    }
 
-  private void initializePresenter() {
-    presenter.setView(this);
-  }
-
-  private void initializeAdapter() {
-    adapter = new SuperHeroesAdapter(presenter);
-  }
-
-  private void initializeRecyclerView() {
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    recyclerView.setHasFixedSize(true);
-    recyclerView.setAdapter(adapter);
-  }
+    private void initializeRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+    }
 }

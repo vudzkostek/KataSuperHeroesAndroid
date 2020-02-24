@@ -20,40 +20,45 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.karumi.screenshot.R;
 import com.karumi.screenshot.model.SuperHero;
 import com.karumi.screenshot.ui.presenter.SuperHeroesPresenter;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 class SuperHeroesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-  private final SuperHeroesPresenter presenter;
-  private final List<SuperHero> superHeroes;
+    private final SuperHeroesPresenter presenter;
+    private final List<SuperHero> superHeroes;
 
-  public SuperHeroesAdapter(SuperHeroesPresenter presenter) {
-    this.presenter = presenter;
-    this.superHeroes = new ArrayList<>();
-  }
+    public SuperHeroesAdapter(SuperHeroesPresenter presenter) {
+        this.presenter = presenter;
+        this.superHeroes = new ArrayList<>();
+    }
 
-  void addAll(Collection<SuperHero> collection) {
-    superHeroes.addAll(collection);
-  }
+    void addAll(Collection<SuperHero> collection) {
+        superHeroes.addAll(collection);
+    }
 
-  @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view =
-        LayoutInflater.from(parent.getContext()).inflate(R.layout.super_hero_row, parent, false);
-    return new SuperHeroViewHolder(view, presenter);
-  }
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view =
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.super_hero_row, parent, false);
+        return new SuperHeroViewHolder(view, presenter);
+    }
 
-  @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-    SuperHeroViewHolder superHeroViewHolder = (SuperHeroViewHolder) holder;
-    SuperHero superHero = superHeroes.get(position);
-    superHeroViewHolder.render(superHero);
-  }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        SuperHeroViewHolder superHeroViewHolder = (SuperHeroViewHolder) holder;
+        SuperHero superHero = superHeroes.get(position);
+        superHeroViewHolder.render(superHero);
+    }
 
-  @Override public int getItemCount() {
-    return superHeroes.size();
-  }
+    @Override
+    public int getItemCount() {
+        return superHeroes.size();
+    }
 }
